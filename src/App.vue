@@ -20,6 +20,15 @@
         </v-btn>
       </div>
     </v-content>
+    <v-snackbar 
+      v-model="snackbar" 
+      :bottom="true"
+      :timeout="snackbarTimeout">
+      {{ snackbarText }}
+      <v-btn color="pink" flat @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -34,7 +43,10 @@ export default {
   },
   data () {
     return {
-      jokes: []
+      jokes: [],
+      snackbar: false,
+      snackbarTimeout: 6000,
+      snackbarText: ""
     }
   },
   methods: {
@@ -47,6 +59,8 @@ export default {
       this.jokes = this.jokes.filter((a) => {
         return a.id != toRemove.id
       });
+      this.snackbarText = "The joke is gone!";
+      this.snackbar = true;
     }
   }
 }
