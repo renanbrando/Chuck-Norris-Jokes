@@ -1,14 +1,35 @@
 <template>
-  <div class="card">
-    <img :src="joke.icon_url" alt="Chuck Icon" style="width:20%">
-    <h1>#FunJoke</h1>
-    <blockquote>
-      <p>{{joke.value}}</p>
-    </blockquote>
-    <p>
-      <button @click="remove(joke)">Remove</button>
-    </p>
-  </div>
+  <v-container fluid grid-list-lg>
+    <v-flex xs12>
+      <v-card color="white" class="black--text">
+        <v-layout>
+          <v-flex xs2>
+            <v-img :src="joke.icon_url" height="125px" contain></v-img>
+          </v-flex>
+          <v-flex xs10>
+            <v-card-title primary-title>
+              <div>
+                <div class="headline">#FunJoke</div>
+                <div>{{joke.value}}</div>
+                <div>
+                  <v-btn flat right :href="joke.url" target="_blank">
+                    <span>Original Joke</span>
+                  </v-btn>
+                </div>
+              </div>
+            </v-card-title>
+          </v-flex>
+        </v-layout>
+        <v-divider light></v-divider>
+        <v-card-actions class="pa-4">
+          <v-icon class="mx-2" @click="remove(joke)">delete</v-icon>
+          <v-icon class="mx-2">save</v-icon>
+          <v-spacer></v-spacer>
+          <v-icon class="mx-2">favorite</v-icon>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-container>
 </template>
 
 <script>
@@ -19,26 +40,13 @@ export default {
   },
   methods: {
     remove(joke) {
-      this.$parent.removeJoke(joke)
+       this.$emit('remove', joke)
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 16px;
-  text-align: center;
-  font-family: arial;
-}
-
-.joke {
-  margin: 16px;
-}
 
 blockquote {
   background: #f9f9f9;
@@ -61,19 +69,4 @@ blockquote p {
   display: inline;
 }
 
-button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-button:hover {
-  opacity: 0.7;
-}
 </style>

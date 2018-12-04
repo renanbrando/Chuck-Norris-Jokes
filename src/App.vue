@@ -1,12 +1,26 @@
 <template>
-  <div>
-    <div class="container">
-      <div v-for="joke in jokes" :key="joke.id">
-        <joke :joke="joke" v-on:remove="removeJoke"/>
+  <v-app>
+    <v-toolbar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Chuck Norris</span>
+        <span class="font-weight-light">JOKES</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn flat href="https://github.com/renanbrando/Chuck-Norris-Jokes.git" target="_blank">
+        <span class="mr-2">See More</span>
+      </v-btn>
+    </v-toolbar>
+    <v-content>
+      <div class="container">
+        <div v-for="joke in jokes" :key="joke.id">
+          <joke :joke="joke" v-on:remove="removeJoke" />
+        </div>
+        <v-btn fab dark large fixed bottom right @click="getJoke">
+          <v-icon dark>add</v-icon>
+        </v-btn>
       </div>
-      <div class="fab" @click="getJoke" text="Add Joke">+</div>
-    </div>
-  </div>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -14,11 +28,11 @@ import Joke from './components/Joke.vue';
 import axios from 'axios';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Joke
   },
-  data() {
+  data () {
     return {
       jokes: []
     }
@@ -37,45 +51,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.container {
-  margin: 0px auto;
-  width: 500px;
-}
-
-.fab {
-   width: 60px;
-   height: 60px;
-   padding: 8px;
-   background-color: #000;
-   border-radius: 50%;
-   box-shadow: 0 6px 10px 0 #666;
-   transition: all 0.1s ease-in-out;
- 
-   font-size: 64px;
-   color: white;
-   text-align: center;
-   line-height: 55px;
-   cursor: pointer;
-   
-   position: fixed;
-   right: 50px;
-   bottom: 50px;
-}
- 
-.fab:hover {
-   box-shadow: 0 6px 14px 0 #666;
-   transform: scale(1.05);
-}
-</style>
