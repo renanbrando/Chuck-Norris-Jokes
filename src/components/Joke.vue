@@ -4,7 +4,7 @@
       <v-card color="white" class="black--text">
         <v-layout>
           <v-flex xs2>
-            <v-img :src="joke.icon_url" height="125px" contain></v-img>
+            <v-img :src="joke.icon_url" height="150px" contain></v-img>
           </v-flex>
           <v-flex xs10>
             <v-card-title primary-title>
@@ -29,7 +29,8 @@
           <v-icon class="mx-2" @click="remove(joke)">delete</v-icon>
           <v-icon class="mx-2">save</v-icon>
           <v-spacer></v-spacer>
-          <v-icon class="mx-2">favorite</v-icon>
+          <v-icon v-if="joke.favorite" class="mx-2" color="red" @click="favorite(index)">favorite</v-icon>
+          <v-icon v-else class="mx-2" color="grey" @click="favorite(index)">favorite</v-icon>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -40,11 +41,15 @@
 export default {
   name: 'Joke',
   props: {
-    joke: Object
+    joke: Object,
+    index: Number
   },
   methods: {
     remove(joke) {
-       this.$emit('remove', joke)
+      this.$emit('remove', joke)
+    },
+    favorite(index) {
+      this.$emit('favorite', index)
     }
   }
 }
@@ -71,6 +76,14 @@ blockquote:before {
 
 blockquote p {
   display: inline;
+}
+
+.red {
+  color: red;
+}
+
+.grey {
+  color: grey;
 }
 
 </style>
