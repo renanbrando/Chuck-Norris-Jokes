@@ -8,7 +8,6 @@
 
 <script>
 import Joke from '../components/FavoritedJoke.vue';
-import axios from 'axios';
 
 export default {
     name: "Favorites",
