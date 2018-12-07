@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer :clipped="true" v-model="drawer" enable-resize-watcher app light>
+    <v-navigation-drawer temporary :clipped="false" v-model="drawer" enable-resize-watcher app light>
       <v-toolbar flat class="transparent">
         <v-list class="pa-0">
           <v-list-tile avatar>
@@ -18,11 +18,7 @@
       <v-list class="pt-0" dense>
         <v-divider></v-divider>
 
-        <v-list-tile
-          v-for="item in items"
-          :key="item.title"
-    
-        >
+        <v-list-tile v-for="item in items" :key="item.title" :to="item.path">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -32,7 +28,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer> 
+    </v-navigation-drawer>
     <v-toolbar app>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
@@ -45,71 +41,27 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <div class="container">
-        <div v-for="(joke, index) in jokes" :key="joke.id">
-          <joke :joke="joke" :index="index" v-on:remove="removeJoke" v-on:favorite="favoriteJoke"/>
-        </div>
-        <v-btn fab dark large fixed bottom right @click="getJoke">
-          <v-icon dark>add</v-icon>
-        </v-btn>
-      </div>
+      <router-view></router-view>
     </v-content>
-    <v-snackbar 
-      v-model="snackbar" 
-      :bottom="true"
-      :timeout="snackbarTimeout">
-      {{ snackbarText }}
-      <v-btn color="pink" flat @click="snackbar = false">
-        Close
-      </v-btn>
-    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import Joke from './components/Joke.vue';
-import axios from 'axios';
 
 export default {
   name: 'App',
-  components: {
-    Joke
-  },
   data () {
     return {
-      jokes: [],
-      snackbar: false,
-      snackbarTimeout: 6000,
-      snackbarText: "",
-       drawer: false,
-        items: [
-          { title: 'Home', icon: 'list' },
-          { title: 'Favorites', icon: 'favorite' }
-        ],
-        right: null
+      drawer: false,
+      items: [
+        { title: 'Home', icon: 'list', path: "/" },
+        { title: 'Favorites', icon: 'favorite', path: "/favorites" }
+      ],
+      right: null
     }
   },
   methods: {
-    getJoke: function () {
-      axios.get("https://api.chucknorris.io/jokes/random").then((response) => {
-        let joke = response.data;
-        joke.favorite = false;
-        this.jokes.push(joke);
-      })
-    },
-    removeJoke: function (toRemove) {
-      this.jokes = this.jokes.filter((a) => {
-        return a.id != toRemove.id
-      });
-      this.snackbarText = "The joke is gone!";
-      this.snackbar = true;
-    },
-    favoriteJoke(index) {
-      if (this.jokes[index].favorite)
-        this.jokes[index].favorite = false;
-      else
-        this.jokes[index].favorite = true;
-    }
+    
   }
 }
 </script>

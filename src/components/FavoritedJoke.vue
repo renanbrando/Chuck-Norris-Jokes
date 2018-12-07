@@ -26,8 +26,6 @@
         </v-layout>
         <v-divider light></v-divider>
         <v-card-actions class="pa-4">
-          <v-icon class="mx-2" @click="remove(joke)">delete</v-icon>
-          <v-icon class="mx-2">save</v-icon>
           <v-spacer></v-spacer>
           <v-icon v-if="joke.favorite" class="mx-2" color="red" @click="favorite(index)">favorite</v-icon>
           <v-icon v-else class="mx-2" color="grey" @click="favorite(index)">favorite</v-icon>
@@ -39,7 +37,7 @@
 
 <script>
 export default {
-  name: 'Joke',
+  name: 'FavoritedJoke',
   props: {
     joke: Object,
     index: Number
