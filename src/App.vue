@@ -10,6 +10,7 @@
 <script>
 
 import Header from './components/Header.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -18,12 +19,17 @@ export default {
   },
   data () {
     return {
-      person: {
-        id: 1,
-        name: "Renan",
-        age: 25
-      }
+  
     }
+  },
+  mounted(){
+    setInterval(() => {
+      axios.get("https://api.chucknorris.io/jokes/random").then((response) => {
+        let joke = response.data;
+        joke.favorite = false;
+        this.$store.commit("add", joke);
+      })
+    }, 3000);
   },
   methods: {
     
