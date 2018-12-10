@@ -24,12 +24,14 @@ export default {
   },
   mounted(){
     setInterval(() => {
-      axios.get("https://api.chucknorris.io/jokes/random").then((response) => {
-        let joke = response.data;
-        joke.favorite = false;
-        this.$store.commit("add", joke);
-      })
-    }, 3000);
+      if (new Date().getSeconds() === 30){
+        axios.get("https://api.chucknorris.io/jokes/random").then((response) => {
+          let joke = response.data;
+          joke.favorite = false;
+          this.$store.commit("add", joke);
+        })
+      }
+    }, 1000);
   },
   methods: {
     
