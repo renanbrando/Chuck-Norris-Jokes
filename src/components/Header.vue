@@ -53,7 +53,8 @@ export default {
             drawer: false,
             items: [
                 { title: 'Home', icon: 'list', path: "/" },
-                { title: 'Favorites', icon: 'favorite', path: "/favorites" }
+                { title: 'Favorites', icon: 'favorite', path: "/favorites" },
+                { title: 'Chart', icon: 'bar_chart', path: "/chart" }
             ]
         }
     }

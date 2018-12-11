@@ -29,6 +29,7 @@ export default {
           let joke = response.data;
           joke.favorite = false;
           this.$store.commit("add", joke);
+          this.$store.commit("addJokeLength", joke);
         })
       }
     }, 1000);
