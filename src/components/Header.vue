@@ -37,7 +37,10 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn flat href="https://github.com/renanbrando/Chuck-Norris-Jokes.git" target="_blank">
-                <span class="mr-2">See More</span>
+                <span>See More</span>
+            </v-btn>
+            <v-btn flat @click="logout">
+                <v-icon>logout</v-icon>
             </v-btn>
         </v-toolbar>
     </div>
@@ -56,6 +59,16 @@ export default {
                 { title: 'Favorites', icon: 'favorite', path: "/favorites" },
                 { title: 'Chart', icon: 'bar_chart', path: "/chart" }
             ]
+        }
+    },
+    methods: {
+        logout(){
+            this.$store.dispatch("logout").then(response => {
+                console.log("User authenticated? " + this.$store.getters.isAuthenticated);
+                this.$router.push('/login');
+            }, error => {
+                console.error("Error while trying to logout");
+            })     
         }
     }
 }

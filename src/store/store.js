@@ -37,11 +37,17 @@ export const store = new Vuex.Store({
         },
         authenticate(state){
             state.isAuthenticated = true;
+        },
+        logout(state){
+            state.isAuthenticated = false;
         }
     },
     actions: {
         authenticate(state){
             state.commit('authenticate');
+        },
+        logout(state){
+            state.commit('logout');
         }
     },
     getters: {

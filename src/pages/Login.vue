@@ -11,14 +11,13 @@
                     <v-card-text class="pt-4">
                         <div>
                             <v-form v-model="valid" ref="form">
-                                <v-text-field label="Enter your e-mail address" v-model="email" :rules="emailRules"
+                                <v-text-field outline color="secondary" label="Enter your e-mail address" v-model="email" :rules="emailRules"
                                     required></v-text-field>
-                                <v-text-field label="Enter your password" v-model="password" min="8" :append-icon="e1 ? 'visibility_off' : 'visibility'"
+                                <v-text-field outline color="secondary" label="Enter your password" v-model="password" min="8" :append-icon="e1 ? 'visibility_off' : 'visibility'"
                                     @click:append="() => (e1 = !e1)" :type="e1 ? 'password' : 'text'" :rules="passwordRules"
                                     counter required></v-text-field>
                                 <v-layout justify-space-between>
-                                    <v-btn @click="submit" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Login</v-btn>
-                                    <a href="">Forgot Password</a>
+                                    <v-btn @click="submit" :class=" { 'grey darken-3 white--text' : valid, disabled: !valid }">Login</v-btn>
                                 </v-layout>
                             </v-form>
                         </div>
@@ -66,5 +65,7 @@
 </script>
 
 <style scoped>
-
+    .loginOverlay {
+        background-color: #505050;
+    }
 </style>
