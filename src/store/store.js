@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
             state.jokes = jokes;
         },
         addJokeLength(state, joke) {
-            state.jokesData.labels.push(state.jokes.length + 1);
+            state.jokesData.labels.push(state.jokes.length);
             state.jokesData.datasets[0].data.push(joke.value.length);
         }
     },

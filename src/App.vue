@@ -1,7 +1,9 @@
 <template>
-  <v-app>
-    <Header v-if="isAuth"/>
+  <v-app> 
     <v-content>
+      <router-view name="header">
+        <Header v-if="isAuth"/>
+      </router-view>
       <router-view></router-view>
     </v-content>  
   </v-app>
