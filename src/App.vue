@@ -2,7 +2,7 @@
   <v-app> 
     <v-content>
       <router-view name="header">
-        <Header v-if="isAuth"/>
+        <Header/>
       </router-view>
       <router-view></router-view>
     </v-content>  
@@ -38,11 +38,6 @@ export default {
   },
   methods: {
     
-  },
-  computed: {
-    isAuth: function(){
-      return true;
-    }
   }
 }
 </script>

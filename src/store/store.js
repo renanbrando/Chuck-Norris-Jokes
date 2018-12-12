@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
+        isAuthenticated: false,
         jokes: [],
         jokesData: {
             labels: [],
@@ -33,9 +34,18 @@ export const store = new Vuex.Store({
         addJokeLength(state, joke) {
             state.jokesData.labels.push(state.jokes.length);
             state.jokesData.datasets[0].data.push(joke.value.length);
+        },
+        authenticate(state){
+            state.isAuthenticated = true;
+        }
+    },
+    actions: {
+        authenticate(state){
+            state.commit('authenticate');
         }
     },
     getters: {
+        isAuthenticated: state => state.isAuthenticated,
         jokes: state => state.jokes,
         jokesData: state => state.jokesData
     }
