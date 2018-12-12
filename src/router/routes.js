@@ -25,6 +25,9 @@ export const routes = [
     path: '/login', 
     components: {
       default: Login
+    },
+    meta: {
+      requiresAuth: false
     }  
   },
   { 
@@ -32,6 +35,9 @@ export const routes = [
     components: {
       default: Home,
       'header': Header 
+    },
+    meta: {
+      requiresAuth: true
     }
   },
   { 
@@ -39,6 +45,9 @@ export const routes = [
     components: {
       default: Favorites,
       'header': Header
+    },
+    meta: {
+      requiresAuth: true
     }
   },
   { 
@@ -46,6 +55,9 @@ export const routes = [
     components: {
       default: Chart,
       'header': Header
+    },
+    meta: {
+      requiresAuth: true
     } 
   },
   { 
@@ -53,6 +65,9 @@ export const routes = [
     components: {
       default: Home,
       'header': Header
+    },
+    meta: {
+      requiresAuth: true
     }
   }
 

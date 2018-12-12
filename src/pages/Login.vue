@@ -41,7 +41,7 @@
                 email: '',
                 emailRules: [
                     (v) => !!v || 'E-mail is required',
-                    (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+                    (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
                 ],
             }
         },
@@ -49,11 +49,13 @@
             submit() {
                 if (this.$refs.form.validate()) {
                     //this.$refs.form.$el.submit();
-                    this.$store.dispatch("authenticate").then(response => {
+                    this.$store.dispatch("authenticate").then(() => {
+                        // eslint-disable-next-line no-console
                         console.log("User authenticated? " + this.$store.getters.isAuthenticated);
                         this.$router.push('/home');
                     }, error => {
-                        console.error("Error while trying to login");
+                        // eslint-disable-next-line no-console
+                        console.error(error);
                     })     
                 }
             },

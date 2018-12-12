@@ -9,7 +9,6 @@
 
 <script>
 import LineChart from '../components/LineChart.vue'
-import chartData from '../chart-data.js';
 
 export default {
     components: {

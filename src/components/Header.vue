@@ -63,11 +63,13 @@ export default {
     },
     methods: {
         logout(){
-            this.$store.dispatch("logout").then(response => {
+            this.$store.dispatch("logout").then( () => {
+                // eslint-disable-next-line no-console
                 console.log("User authenticated? " + this.$store.getters.isAuthenticated);
                 this.$router.push('/login');
             }, error => {
-                console.error("Error while trying to logout");
+                // eslint-disable-next-line no-console
+                console.error(error);
             })     
         }
     }
