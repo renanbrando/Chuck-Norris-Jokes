@@ -1,30 +1,8 @@
-import Header from '../components/Header.vue'
-import Login from '../pages/Login.vue'
-
-// Lazy loading
-const Home = resolve => {
-  require.ensure(['../pages/Home.vue'], () => {
-      resolve(require('../pages/Home.vue'));
-  });
-};
-
-const Favorites = resolve => {
-  require.ensure(['../pages/Favorites.vue'], () => {
-      resolve(require('../pages/Favorites.vue'));
-  });
-};
-
-const Chart = resolve => {
-  require.ensure(['../pages/Chart.vue'], () => {
-      resolve(require('../pages/Chart.vue'));
-  });
-};
-
 export const routes = [
   { 
     path: '/login', 
     components: {
-      default: Login
+      default: () => import('../pages/Login.vue')
     },
     meta: {
       requiresAuth: false
@@ -33,8 +11,8 @@ export const routes = [
   { 
     path: '', 
     components: {
-      default: Home,
-      'header': Header 
+      default: () => import('../pages/Home.vue'),
+      'header': () => import('../components/Header.vue') 
     },
     meta: {
       requiresAuth: true
@@ -43,8 +21,8 @@ export const routes = [
   { 
     path: '/favorites', 
     components: {
-      default: Favorites,
-      'header': Header
+      default: () => import('../pages/Favorites.vue'),
+      'header': () => import('../components/Header.vue') 
     },
     meta: {
       requiresAuth: true
@@ -53,8 +31,8 @@ export const routes = [
   { 
     path: '/chart', 
     components: {
-      default: Chart,
-      'header': Header
+      default: () => import('../pages/Chart.vue'),
+      'header': () => import('../components/Header.vue') 
     },
     meta: {
       requiresAuth: true
@@ -63,8 +41,8 @@ export const routes = [
   { 
     path: '*', 
     components: {
-      default: Home,
-      'header': Header
+      default: () => import('../pages/Home.vue'),
+      'header': () => import('../components/Header.vue') 
     },
     meta: {
       requiresAuth: true

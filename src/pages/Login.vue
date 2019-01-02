@@ -1,10 +1,10 @@
 <template>
     <v-container fluid fill-height class="loginOverlay">
-        <v-layout flex align-center justify-center>
-            <v-flex xs12 sm4 elevation-6>
+        <v-layout flex align-center justify-center class="loginUnderlay"> 
+            <v-flex xs12 sm4 elevation-6 class="loginBox">
                 <v-toolbar class="pt-5 grey darken-3">
                     <v-toolbar-title class="white--text">
-                        <h4>Welcome Back to Chuck Norris API</h4>
+                        <h4 class="dev-welcome">Welcome Back to Chuck Norris API</h4>
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-card>
@@ -66,8 +66,41 @@
     }
 </script>
 
-<style scoped>
-    .loginOverlay {
-        background-color: #505050;
+<style lang="scss" scoped>
+    @import '../material-colours.scss';
+
+    $prod: "dev";
+    $primary-color: #505050;
+    $secondary-color: rebeccapurple;
+
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
     }
+
+    %boxDefaults {
+        border: 10px dashed $material-teal-a400;
+        padding: 10px;
+    }
+
+    .loginBox { 
+        @include transform(rotate(350deg)); 
+        @extend %boxDefaults;
+    }
+
+    .#{$prod}-welcome{
+        color: blue + red;
+    }
+
+    .loginOverlay {
+        background-color: $material-light-blue-a700;
+
+        .loginUnderlay {
+            background-color: $primary-color;
+        }
+    }
+
+
+
 </style>
