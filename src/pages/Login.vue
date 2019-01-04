@@ -4,6 +4,7 @@
             <v-flex xs12 sm4 elevation-6 class="loginBox">
                 <v-toolbar class="pt-5 grey darken-3">
                     <v-toolbar-title class="white--text">
+                        <font-awesome-icon icon="coffee" />
                         <h4 class="dev-welcome">Welcome Back to Chuck Norris API</h4>
                     </v-toolbar-title>
                 </v-toolbar>
