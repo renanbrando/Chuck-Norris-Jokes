@@ -91,7 +91,7 @@
     }
 
     .#{$prod}-welcome{
-        color: blue + red;
+        color: blue + yellow;
     }
 
     .loginOverlay {
